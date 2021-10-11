@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.11.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<l>dev_close_window()</l>
+<l>*stop()</l>
+<l>read_image(imageRGB,'E:/blowfish_github/halcon_sample/002_variable_sample/dice.png')</l>
+<l>get_image_size(imageRGB,width,height)</l>
+<l>dev_open_window(0,0,570,425,'black',WindowHandle)</l>
+<l>dev_display(imageRGB)</l>
+<l>stop()</l>
+<c></c>
+<c>*转化成灰度</c>
+<l>rgb1_to_gray (imageRGB, image)</l>
+<l>dev_display(imageRGB)</l>
+<l>stop()</l>
+<c></c>
+<l>Row :=423</l>
+<l>Column :=529</l>
+<l>Phi :=-0.61</l>
+<l>Length1 := 355</l>
+<l>Length2 := 506</l>
+<l>gen_rectangle2(ROI_0,Row,Column,Phi,Length1,Length2)</l>
+<l>reduce_domain(image,ROI_0,ImageReduced)</l>
+<l>dev_display(ImageReduced)</l>
+<l>stop()</l>
+<c></c>
+<l>threshold (ImageReduced, Region, 87, 255)</l>
+<l>dev_clear_window()</l>
+<l>dev_display(ImageReduced)</l>
+<l>dev_display(Region)</l>
+<l>stop()</l>
+<c></c>
+<l>connection (Region, ConnectedRegions)</l>
+<l>dev_display(ConnectedRegions)</l>
+<l>stop()</l>
+<c></c>
+<l>count_obj(ConnectedRegions,NumConnected1)</l>
+<l>connect_and_holes(ConnectedRegions,NumConnected,NumHoles)</l>
+<l>Sum := sum(NumHoles)</l>
+<l>Message := 'Sum:' + Sum</l>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

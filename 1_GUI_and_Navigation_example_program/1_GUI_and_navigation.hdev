@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.2" halcon_version="18.05.0.1">
+<procedure name="main">
+<interface/>
+<body>
+<c>*</c>
+<c>* By closing the Graphics Window, all previous visualization parameters are reset.</c>
+<l>dev_close_window ()</l>
+<c>*</c>
+<c>* Read the image and display it.</c>
+<l>read_image (Image, 'dice')</l>
+<l>dev_open_window (0, 0, 580, 440, 'black', WindowHandle)</l>
+<l>dev_display (Image)</l>
+<l>stop()</l>
+<c>*</c>
+<c>* Apply a threshold with previousely defined parameters. </c>
+<l>MinGray := 85</l>
+<l>MaxGray := 255</l>
+<l>threshold (Image, Region, MinGray, MaxGray)</l>
+<l>dev_display (Region)</l>
+<l>stop()</l>
+<c>*</c>
+<c>* Right now, all bright areas are in a single region. The operator connection </c>
+<c>* computes all connected regions and stores the results in seperate regions.</c>
+<l>connection (Region, ConnectedRegions)</l>
+<l>dev_display (ConnectedRegions)</l>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>
